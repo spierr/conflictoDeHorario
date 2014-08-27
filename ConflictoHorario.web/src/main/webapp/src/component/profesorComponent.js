@@ -33,11 +33,12 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         model: App.Model.ProfesorModel,
         listModel: App.Model.ProfesorList,
         controller : App.Controller.ProfesorController,
-        postInit: function(){
+        postInit: function(options) {
             var self = this;
-            Backbone.on(self.componentId + '-profesor-tipo', function(params) {
+            alert('El profesor es Asistente');
+             Backbone.on(self.componentId + '-profesor-tipo', function(params) {
                 self.componentController.tipoProfesor(params);
-            });
+                 });
         }
     });
     return App.Component.ProfesorComponent;
