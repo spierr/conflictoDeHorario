@@ -33,9 +33,9 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         model: App.Model.SeccionModel,
         listModel: App.Model.SeccionList,
         controller : App.Controller.SeccionController,
-        postInit: function(options) {
+        postInit: function() {
             var self = this;
-            this.addButton({name: "Cupos", icon: "glyphicon-stats", }, function() {
+            this.addButton({name: "Cupos", icon: "glyphicon-stats"}, function() {
                 self.componentController.seccionCupos();
             });
         }

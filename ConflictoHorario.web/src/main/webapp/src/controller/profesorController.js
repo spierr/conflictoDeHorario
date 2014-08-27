@@ -48,8 +48,61 @@ define(['controller/_profesorController','delegate/profesorDelegate'], function(
             }
             
             
+        },
+        postInit: function(options) {
+            var self = this;
+            this.listAniosTemplate = _.template($('#profesorAniosList').html());
+            this.listAniosModelClass = options.listModelClass;
+        },
+        _renderAnios: function() {
+            var self = this;
+            /*Aquí se utiliza el efecto gráfico backbone deslizar. “$el” hace referencia al <div id=”main”> ubicado en el index.html. Dentro de este div se despliegue la tabla.*/
+            this.$el.slideUp("fast", function() {
+                /*Establece que en el <div> se despliegue el template de la variable “”. Como parámetros entran las variables establecidas dentro de los tags <%%> con sus valores como un objeto JSON. En este caso, la propiedad profesors tendrá la lista que instanció “profesorSearch” en la variable del bucle <% _.each(profesors, function(profesor) { %>*/
+ 
+                self.$el.html(self.listAniosTemplate({profesors: self.profesorAniosModelList.models}));
+                self.$el.slideDown("fast");
+            });
+        },
+        profesorAnios: function(params) {
+        //Elementos para invocar el servicio getProfesors
+            if (params) {
+                var data = params.data;
+            }
+            if (App.Utils.eventExists(this.componentId + '-' + 'instead-profesor-list')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-profesor-list', {view: this, data: data});
+            } else {
+                Backbone.trigger(this.componentId + '-' + 'pre-profesor-list', {view: this, data: data});
+                var self = this;
+                if (!this.profesorModelList) {
+                    this.profesorModelList = new this.listModelClass();
+                }
+                //se obtienen los deportes del servicio getProfesors
+                this.profesorModelList.fetch({
+                    data: data,
+                    success: function() {
+                        var elementos = self.profesorModelList.models;
+                        //Ahora se instancia el nuevo modelo construido
+                        self.profesorAniosModelList = new App.Model.ProfesorAniosList;
+                        //Se itera sobre la variable elementos, que corresponden a la lista de modelos obtenida del servico REST getProfesors
+                        _.each(elementos, function(d) {
+                            //Se hace el cálculo del nuevo campo
+                            var anios = 3;
+                            /*Ahora se instancia un ProfesorPromModel, con un nuevo objeto JSON como parámetro como constructor (antes profesorModel), extrayendo los datos de “d”.*/
+                            var model = new App.Model.ProfesorAniosModel({name: d.attributes.name, anios: anios});
+                            //y se agrega finalmente a los modelos prom de la lista.
+                            self.profesorAniosModelList.models.push(model);
+                        });
+                        //Se invoca la función de renderizado para que muestre los resultados en la nueva lista.
+                        self._renderAnios(params);
+                        Backbone.trigger(self.componentId + '-' + 'post-profesor-list', {view: self});
+                    },
+                    error: function(mode, error) {
+                        Backbone.trigger(self.componentId + '-' + 'error', {event: 'profesor-list', view: self, error: error});
+                    }
+                });
+            }
         }
-
     });
     return App.Controller.ProfesorController;
 }); 
