@@ -4,9 +4,9 @@
     <table class="table striped">
     <thead>
     <tr>
-		 <th>Name</th>
+		 <th>Nombre</th>
 		 <th>Programa</th>
-    <th>Actions</th>
+    <th>Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -16,10 +16,10 @@
 		<td><%= htmlEncode(curso.getDisplay('programa')) %></td>
     <td>
     <% if(showEdit) {%>
-    <a onclick="Backbone.trigger('<%= componentId %>-curso-edit',{id:<%= curso.id %>}); return false" >Edit</a> |
+    <a onclick="Backbone.trigger('<%= componentId %>-curso-edit',{id:<%= curso.id %>}); return false" >Editar</a> |
 	<% } %> 
 	<% if(showDelete) {%>
-    <a onclick="Backbone.trigger('<%= componentId %>-curso-delete',{id:<%= curso.id %>}); return false" >Delete</a> 
+    <a onclick="Backbone.trigger('<%= componentId %>-curso-delete',{id:<%= curso.id %>}); return false" >Eliminar</a> 
 	<% } %>    
 	</td>
     </tr>

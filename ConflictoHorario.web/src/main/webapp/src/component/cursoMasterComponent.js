@@ -7,6 +7,13 @@ define(['controller/selectionController', 'model/cacheModel', 'model/cursoMaster
     App.Component.CursoMasterComponent = App.Component.BasicComponent.extend({
         initialize: function() {
             var self = this;
+            this.toolbarModel.set('createName', 'Crear');
+            this.toolbarModel.set('refreshName', 'Refrescar');
+            this.toolbarModel.set('showPrint', false);
+            this.toolbarModel.set('showSearch', false);
+            this.toolbarModel.set('cancelName', 'Cancelar');
+            this.toolbarModel.set('saveName', 'Guardar');
+         
             this.configuration = App.Utils.loadComponentConfiguration('cursoMaster');
             var uComponent = new CursoComponent();
             uComponent.initialize();
