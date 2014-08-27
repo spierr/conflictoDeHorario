@@ -4,34 +4,34 @@
     <table class="table striped">
     <thead>
     <tr>
-		 <th>Name</th>
-		 <th>Cupo Maximo</th>
-		 <th>Salon</th>
-		 <th>Inscritos</th>
-		 <th>Enespera_secccion Id</th>
-		 <th>Inscritos_seccion Id</th>
-		 <th>Profesor_seccion Id</th>
+    <th>Name</th>
+    <th>Cupo Maximo</th>
+    <th>Salon</th>
+    <th>Inscritos</th>
+    <th>Enespera_secccion Id</th>
+    <th>Inscritos_seccion Id</th>
+    <th>Profesor_seccion Id</th>
     <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <% _.each(seccions, function(seccion) { %>
     <tr>
-		<td><%= htmlEncode(seccion.getDisplay('name')) %></td>
-		<td><%= htmlEncode(seccion.getDisplay('cupoMaximo')) %></td>
-		<td><%= htmlEncode(seccion.getDisplay('salon')) %></td>
-		<td><%= htmlEncode(seccion.getDisplay('inscritos')) %></td>
-		<td><%= htmlEncode(seccion.getDisplay('enespera_secccionId')) %></td>
-		<td><%= htmlEncode(seccion.getDisplay('inscritos_seccionId')) %></td>
-		<td><%= htmlEncode(seccion.getDisplay('profesor_seccionId')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('name')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('cupoMaximo')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('salon')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('inscritos')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('enespera_secccionId')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('inscritos_seccionId')) %></td>
+    <td><%= htmlEncode(seccion.getDisplay('profesor_seccionId')) %></td>
     <td>
     <% if(showEdit) {%>
     <a onclick="Backbone.trigger('<%= componentId %>-seccion-edit',{id:<%= seccion.id %>}); return false" >Edit</a> |
-	<% } %> 
-	<% if(showDelete) {%>
+    <% } %> 
+    <% if(showDelete) {%>
     <a onclick="Backbone.trigger('<%= componentId %>-seccion-delete',{id:<%= seccion.id %>}); return false" >Delete</a> 
-	<% } %>    
-	</td>
+    <% } %>    
+    </td>
     </tr>
     <% }); %>
     </tbody>
@@ -45,52 +45,75 @@
     <% if(seccion.id) {%>
     <input type="hidden" name="id" value="<%= seccion.id %>"/>
     <% }%>
-		<div class="form-group" >
-		<label for="name">Name</label>
-    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= seccion.get('name') %>"/>	
-		</div>
-		<div class="form-group" >
-		<label for="cupoMaximo">Cupo Maximo</label>
-    	<input type="text" class="form-control" id="cupoMaximo" name="cupoMaximo" placeholder="Enter value" value="<%= seccion.get('cupoMaximo') %>"/>	
-		</div>
-		<div class="form-group" >
-		<label for="salon">Salon</label>
-    	<input type="text" class="form-control" id="salon" name="salon" placeholder="Enter value" value="<%= seccion.get('salon') %>"/>	
-		</div>
-		<div class="form-group" >
-		<label for="inscritos">Inscritos</label>
-    	<input type="text" class="form-control" id="inscritos" name="inscritos" placeholder="Enter value" value="<%= seccion.get('inscritos') %>"/>	
-		</div>
-		<div class="form-group" >
- 
-			<label for="enespera_secccionidId">Enespera_secccion Id</label> 
-            <select class="form-control" id="enespera_secccionId" name="enespera_secccionId">
-			  <option value="">None</option>
-            <% enEspera_secccion.each(function(enespera_secccionid) { %> 
-              <option value="<%=enespera_secccionid.get('id')%>" <% if(seccion.get('enespera_secccionId')==enespera_secccionid.get('id')) {%>selected<%}%> ><%=enespera_secccionid.get('name')%></option>
-            <% }); %>                
-            </select>  
-		</div>
-		<div class="form-group" >
- 
-			<label for="inscritos_seccionidId">Inscritos_seccion Id</label> 
-            <select class="form-control" id="inscritos_seccionId" name="inscritos_seccionId">
-			  <option value="">None</option>
-            <% inscritos_seccion.each(function(inscritos_seccionid) { %> 
-              <option value="<%=inscritos_seccionid.get('id')%>" <% if(seccion.get('inscritos_seccionId')==inscritos_seccionid.get('id')) {%>selected<%}%> ><%=inscritos_seccionid.get('name')%></option>
-            <% }); %>                
-            </select>  
-		</div>
-		<div class="form-group" >
- 
-			<label for="profesor_seccionidId">Profesor_seccion Id</label> 
-            <select class="form-control" id="profesor_seccionId" name="profesor_seccionId">
-			  <option value="">None</option>
-            <% profesor_seccion.each(function(profesor_seccionid) { %> 
-              <option value="<%=profesor_seccionid.get('id')%>" <% if(seccion.get('profesor_seccionId')==profesor_seccionid.get('id')) {%>selected<%}%> ><%=profesor_seccionid.get('name')%></option>
-            <% }); %>                
-            </select>  
-		</div>
+    <div class="form-group" >
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= seccion.get('name') %>"/>	
+    </div>
+    <div class="form-group" >
+    <label for="cupoMaximo">Cupo Maximo</label>
+    <input type="text" class="form-control" id="cupoMaximo" name="cupoMaximo" placeholder="Enter value" value="<%= seccion.get('cupoMaximo') %>"/>	
+    </div>
+    <div class="form-group" >
+    <label for="salon">Salon</label>
+    <input type="text" class="form-control" id="salon" name="salon" placeholder="Enter value" value="<%= seccion.get('salon') %>"/>	
+    </div>
+    <div class="form-group" >
+    <label for="inscritos">Inscritos</label>
+    <input type="text" class="form-control" id="inscritos" name="inscritos" placeholder="Enter value" value="<%= seccion.get('inscritos') %>"/>	
+    </div>
+    <div class="form-group" >
+
+    <label for="enespera_secccionidId">Enespera_secccion Id</label> 
+    <select class="form-control" id="enespera_secccionId" name="enespera_secccionId">
+    <option value="">None</option>
+    <% enEspera_secccion.each(function(enespera_secccionid) { %> 
+    <option value="<%=enespera_secccionid.get('id')%>" <% if(seccion.get('enespera_secccionId')==enespera_secccionid.get('id')) {%>selected<%}%> ><%=enespera_secccionid.get('name')%></option>
+    <% }); %>                
+    </select>  
+    </div>
+    <div class="form-group" >
+
+    <label for="inscritos_seccionidId">Inscritos_seccion Id</label> 
+    <select class="form-control" id="inscritos_seccionId" name="inscritos_seccionId">
+    <option value="">None</option>
+    <% inscritos_seccion.each(function(inscritos_seccionid) { %> 
+    <option value="<%=inscritos_seccionid.get('id')%>" <% if(seccion.get('inscritos_seccionId')==inscritos_seccionid.get('id')) {%>selected<%}%> ><%=inscritos_seccionid.get('name')%></option>
+    <% }); %>                
+    </select>  
+    </div>
+    <div class="form-group" >
+
+    <label for="profesor_seccionidId">Profesor_seccion Id</label> 
+    <select class="form-control" id="profesor_seccionId" name="profesor_seccionId">
+    <option value="">None</option>
+    <% profesor_seccion.each(function(profesor_seccionid) { %> 
+    <option value="<%=profesor_seccionid.get('id')%>" <% if(seccion.get('profesor_seccionId')==profesor_seccionid.get('id')) {%>selected<%}%> ><%=profesor_seccionid.get('name')%></option>
+    <% }); %>                
+    </select>  
+    </div>
     </form>
     </div>
 </script> 
+
+<script type="text/template" id="seccionCuposList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Name</th>
+		 <th>Cupos</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(seccions, function(seccion) { %>
+    <tr>
+		<td><%= htmlEncode(seccion.getDisplay('name')) %></td>
+		<td><%= htmlEncode(seccion.getDisplay('cupos')) %></td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
