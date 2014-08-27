@@ -31,13 +31,20 @@ define(['model/_seccionModel'], function() {
     App.Model.SeccionModel = App.Model._SeccionModel.extend({
 
  	validate: function(attrs,options){
+           
             var validationMessage = "";
             if(!attrs.name){
                 validationMessage = "The name can't be empty.";
+                 return validationMessage;
             }
-            if(validationMessage.length>0){
-               return validationMessage;
+             console.log(parseInt(attrs.profesor_seccionId));
+            if(parseInt(attrs.profesor_seccionId)==0)
+            {
+                validationMessage = "Todas las secciones deben tener un profesor asignado";
+                return validationMessage;
             }
+        
+             
         }
 
     });

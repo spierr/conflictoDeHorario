@@ -35,6 +35,14 @@ define(['model/_estudianteModel'], function() {
             if(validationMessage.length>0){
                return validationMessage;
             }
+            
+         var promedio=parseFloat(attrs.puntosCalidad)/parseFloat(attrs.creditos);
+           
+            if(promedio<3.25 )
+            { 
+                validationMessage= "No se puede ingresar el estudiante, tiene un promedio de "+ promedio;
+                return validationMessage;
+            }
         }
 
     });
