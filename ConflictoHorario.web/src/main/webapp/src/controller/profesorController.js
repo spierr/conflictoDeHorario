@@ -87,7 +87,14 @@ define(['controller/_profesorController','delegate/profesorDelegate'], function(
                         //Se itera sobre la variable elementos, que corresponden a la lista de modelos obtenida del servico REST getProfesors
                         _.each(elementos, function(d) {
                             //Se hace el cálculo del nuevo campo
-                            var anios = 3;
+                            var today = new Date();
+                            var fechaVin = new Date(d.attributes.fechaVinulacion);
+                            var anios = today.getFullYear() - fechaVin.getFullYear();
+                            var m = today.getMonth() - fechaVin.getMonth();
+                            if (m < 0 || (m === 0 && today.getDate() < fechaVin.getDate())) 
+                            {
+                                anios--;
+                            }
                             /*Ahora se instancia un ProfesorPromModel, con un nuevo objeto JSON como parámetro como constructor (antes profesorModel), extrayendo los datos de “d”.*/
                             var model = new App.Model.ProfesorAniosModel({name: d.attributes.name, anios: anios});
                             //y se agrega finalmente a los modelos prom de la lista.

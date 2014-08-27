@@ -103,12 +103,11 @@
     <tr>
 		 <th>Name</th>
 		 <th>Cupos</th>
-    <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <% _.each(seccions, function(seccion) { %>
-    <tr>
+    <tr class="<% if(seccion.getDisplay('cupos') < 0) {%>danger<%} %>">
 		<td><%= htmlEncode(seccion.getDisplay('name')) %></td>
 		<td><%= htmlEncode(seccion.getDisplay('cupos')) %></td>
     </tr>
