@@ -68,8 +68,10 @@ define(['controller/_seccionController','delegate/seccionDelegate'], function() 
                         _.each(elementos, function(d) {
                             //Se hace el cálculo del nuevo campo
                             var cupos = "" + (parseInt(d.attributes.cupoMaximo) - parseInt(d.attributes.inscritos));
+                            
+                            var porc = "" + (parseInt(d.attributes.inscritos)/parseInt(d.attributes.cupoMaximo));
                             /*Ahora se instancia un SportPromModel, con un nuevo objeto JSON como parámetro como constructor (antes seccionModel), extrayendo los datos de “d”.*/
-                            var model = new App.Model.SeccionCuposModel({name: d.attributes.name, cupos: cupos});
+                            var model = new App.Model.SeccionCuposModel({name: d.attributes.name, cupos: cupos, porc: porc});
                             //y se agrega finalmente a los modelos prom de la lista.
                             self.seccionCuposModelList.models.push(model);
                         });

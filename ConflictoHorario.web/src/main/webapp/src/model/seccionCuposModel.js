@@ -3,7 +3,8 @@ define(['model/seccionCuposModel'], function() {
     App.Model.SeccionCuposModel = Backbone.Model.extend({
         defaults: {
             'name': '',
-            'cupos': ''
+            'cupos': '',
+            'porc': ''
         },
         getDisplay: function(name) {
             return this.get(name);

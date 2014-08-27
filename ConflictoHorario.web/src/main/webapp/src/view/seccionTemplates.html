@@ -107,7 +107,7 @@
     </thead>
     <tbody>
     <% _.each(seccions, function(seccion) { %>
-    <tr class="<% if(seccion.getDisplay('cupos') < 0) {%>danger<%} %>">
+    <tr class="<% if(seccion.getDisplay('cupos') < 0) {%>danger<%} else if(seccion.getDisplay('porc') < 20) {%>warning<%} %>">
 		<td><%= htmlEncode(seccion.getDisplay('name')) %></td>
 		<td><%= htmlEncode(seccion.getDisplay('cupos')) %></td>
     </tr>
